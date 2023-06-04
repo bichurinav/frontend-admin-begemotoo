@@ -1,9 +1,11 @@
+import { Outlet, useLocation } from "react-router-dom";
 import "./App.scss";
-import Form from "./components/Form/Form";
 
 function App() {
+  const location = useLocation();
+
   return (
-    <div className="App">
+    <div className={location.pathname === "/auth" ? "App App--auth" : "App"}>
       <header className="App-header">
         <div className="container container--center">
           <header>
@@ -12,8 +14,7 @@ function App() {
             </h1>
           </header>
           <div className="content mt-4">
-            <Form type="text" title="Придумайте описание для картинок" />
-            <Form type="image" title="Загрузите картинку или картинки" />
+            <Outlet />
           </div>
         </div>
       </header>
