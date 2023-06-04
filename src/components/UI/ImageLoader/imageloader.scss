@@ -1,0 +1,22 @@
+.image-loader {
+  .inner {
+    display: inline-flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    background: #fff;
+    color: rgb(75, 75, 75);
+    font-weight: 600;
+    transition: opacity 0.1s ease-in;
+    span {
+      margin-left: 6px;
+    }
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}

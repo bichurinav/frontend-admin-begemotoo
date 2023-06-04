@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+$theme: rgb(163, 230, 188);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Ubuntu";
+  font-weight: 400;
+  color: #fff;
+  background: #181818;
+}
+
+h1 {
+  color: $theme;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 80px;
+  border-radius: 12px;
+  padding: 12px;
+  outline: none;
+  border: 2px solid transparent;
+  &:focus {
+    border: 2px solid $theme;
+  }
+}
+
+.container {
+  width: 1144px;
+  margin: 0 auto;
+  &--center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  padding: 0 12px;
+  @media (max-width: 1143px) {
+    width: 100%;
+  }
+}
+
+.c-silver {
+  color: gray;
+}
+
+.logo {
+  margin-top: 20px;
+  span:first-child {
+    color: rgb(212, 212, 212);
+    font-size: 20px;
+    font-weight: 300;
+  }
+  @media (max-width: 399px) {
+    font-size: 30px;
+  }
+}
+
+.button {
+  font-family: "Ubuntu";
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border: 2px solid $theme;
+  border-radius: 24px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $theme;
+  margin-top: 18px;
+  transition: all 0.2s ease-in;
+  &:hover {
+    background: $theme;
+    color: rgb(63, 63, 63);
+  }
+  &:disabled {
+    border-color: silver;
+    color: silver;
+    &:hover {
+      background: transparent;
+      border-color: silver;
+      cursor: no-drop;
+    }
+  }
+}
+
+.mt-4 {
+  margin-top: 48px;
+}
+
+.content {
+  @media (max-width: 419px) {
+    width: 100%;
+  }
+}
