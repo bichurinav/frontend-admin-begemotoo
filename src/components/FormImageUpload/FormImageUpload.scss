@@ -1,11 +1,8 @@
-$failed: rgb(194, 58, 34);
-$success: rgb(37, 155, 72);
-
-.form {
+.form-image-upload {
   width: 420px;
   display: flex;
   flex-direction: column;
-  .title {
+  &__title {
     margin: 18px 0;
     font-size: 18px;
   }
@@ -40,24 +37,6 @@ $success: rgb(37, 155, 72);
     }
     img {
       width: 100%;
-    }
-  }
-  // status-alert
-  &-status {
-    padding: 16px;
-    margin-top: 18px;
-    font-size: 16px;
-    color: #fff;
-    border-radius: 24px;
-    font-weight: 500;
-
-    &--success {
-      background: $success;
-      box-shadow: 0 1px 10px $success;
-    }
-    &--failed {
-      background: $failed;
-      box-shadow: 0 1px 10px $failed;
     }
   }
 }

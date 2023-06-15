@@ -10,7 +10,7 @@ function App() {
         <div className="container container--center">
           <header>
             <h1 className="logo">
-              Admin Panel <span>Begemotoo</span>
+              Admin Panel <span>Game Memes</span>
             </h1>
           </header>
           <div className="content mt-4">

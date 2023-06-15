@@ -1,13 +1,8 @@
+import * as React from "react";
 import { Navigate } from "react-router-dom";
 
-type Child = {
-  children: JSX.Element;
-};
-
-const RequireAuth = ({ children }: Child) => {
-  const auth = false;
-
-  console.log(children);
+const RequireAuth: React.FC<{ children: JSX.Element }> = ({ children }) => {
+  const auth = true;
 
   if (!auth) {
     return <Navigate to="/auth" />;

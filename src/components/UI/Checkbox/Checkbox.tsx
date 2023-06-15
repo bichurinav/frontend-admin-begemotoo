@@ -1,5 +1,5 @@
-import { CheckboxForm } from "../../Form/Form.types";
-import "./checkbox.scss";
+import { CheckboxForm } from "./Checkbox.types";
+import "./Checkbox.scss";
 
 const Checkbox = ({ label, value, onChange }: CheckboxForm) => {
   return (

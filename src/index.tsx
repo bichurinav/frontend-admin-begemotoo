@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Main from "./pages/Main";
+import Main from "./pages/Main/Main";
 import App from "./App";
 import RequireAuth from "./hoc/RequireAuth";
-import Auth from "./pages/Auth/Auth";
+import Auth from "@/pages/Auth/Auth";
 
 const router = createBrowserRouter([
   {

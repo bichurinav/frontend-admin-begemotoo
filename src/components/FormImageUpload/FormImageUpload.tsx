@@ -1,41 +1,32 @@
-import React, { useState } from "react";
-import InfoStatusForm from "./InfoStatusForm";
+import * as React from "react";
+import InfoStatusForm from "./InfoStatusForm/InfoStatusForm";
 import Checkbox from "../UI/Checkbox/Checkbox";
 import ImageLoader from "../UI/ImageLoader/ImageLoader";
-import { StatusForm, FormProps, FormData, ImageSrc } from "./Form.types";
-import "./Form.scss";
+import type { FormData, ImageSrc } from "./FormImageUpload.types";
+import type { StatusForm } from "./InfoStatusForm/InfoStatusForm.types";
+import "./FormImageUpload.scss";
 
-// TODO: реализовать метод sendData
-
-const Form = ({ type, title }: FormProps) => {
-  const [dataForm, setDataForm] = useState<FormData>({
-    text: "",
+const FormImageUpload: React.FC = () => {
+  const [dataForm, setDataForm] = React.useState<FormData>({
     image: [],
     private: false,
   });
 
-  const [statusForm, setStatusForm] = useState<StatusForm>({
+  const [statusForm, setStatusForm] = React.useState<StatusForm>({
     status: "failed",
     message: "",
     show: false,
   });
 
-  const [textImageLoader, setTextImageLoader] = useState("Загрузить");
+  const [textImageLoader, setTextImageLoader] = React.useState("Загрузить");
 
-  const sendData = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(dataForm);
-  };
-
-  const textInputHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const value = e.currentTarget.value;
-    if (value.length > 3) {
-      setStatusForm({ ...statusForm, status: "success" });
-    } else {
-      resetStatusForm();
-    }
-    setDataForm({ ...dataForm, text: value.replace(/<\/?[^>]+(>|$)/g, "") });
-  };
+  const sendData = React.useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log(dataForm);
+    },
+    [dataForm]
+  );
 
   const resetStatusForm = () =>
     setStatusForm({ status: "failed", message: "", show: false });
@@ -150,29 +141,14 @@ const Form = ({ type, title }: FormProps) => {
   };
 
   return (
-    <form onSubmit={(e) => sendData(e)} className="form">
+    <form onSubmit={sendData} className="form-image-upload">
       <label>
-        <h4 className="title">{title}</h4>
-        {type === "text" && (
-          <textarea
-            placeholder="Слеплен с любовью как шоколад Нестле..."
-            onChange={(e) => textInputHandler(e)}
-            name="text"
-            id=""
-            cols={0}
-            rows={0}
-          ></textarea>
-        )}
-        {type === "image" && (
-          <ImageLoader onChange={fileInputHandler} text={textImageLoader} />
-        )}
+        <h4 className="form-image-upload__title">Загрузиту картинки</h4>
+
+        <ImageLoader onChange={fileInputHandler} text={textImageLoader} />
       </label>
       <Checkbox
-        label={
-          type === "text"
-            ? "Сделать фразу приватной"
-            : "Сделать картинки приватными"
-        }
+        label={"Сделать картинки приватными"}
         value={dataForm.private}
         onChange={checkboxPrivateHandler}
       />
@@ -180,25 +156,23 @@ const Form = ({ type, title }: FormProps) => {
       <button className="button" disabled={statusForm.status === "failed"}>
         Отправить на сервер
       </button>
-      {type === "image" && (
-        <div className="images-list">
-          {dataForm.image.map((item, idx) => {
-            return (
-              <div key={item.id} className="images-item">
-                <img src={item.src} alt="" />
-                <img
-                  onClick={() => removeImgSrc(item)}
-                  className="remove"
-                  src="/remove.png"
-                  alt=""
-                />
-              </div>
-            );
-          })}
-        </div>
-      )}
+      <div className="images-list">
+        {dataForm.image.map((item, idx) => {
+          return (
+            <div key={item.id} className="images-item">
+              <img src={item.src} alt="" />
+              <img
+                onClick={() => removeImgSrc(item)}
+                className="remove"
+                src="/remove.png"
+                alt=""
+              />
+            </div>
+          );
+        })}
+      </div>
     </form>
   );
 };
 
-export default Form;
+export default FormImageUpload;

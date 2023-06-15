@@ -1,4 +1,5 @@
-import { StatusForm } from "./Form.types";
+import { StatusForm } from "./InfoStatusForm.types";
+import "./InfoStatusForm.scss";
 
 const InfoStatusForm = ({ status, message, show }: StatusForm) => {
   return (

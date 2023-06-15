@@ -1,24 +1,57 @@
+import * as React from "react";
 import { useState } from "react";
-import "./auth.scss";
+import "./Auth.scss";
 
-// TODO: Сделать валидацию пароля (добавить анимацию тряски)
 // TODO: Логинить юзера и отправлять на страницу <Main />
 
 const Auth = () => {
   const [fieldPasssword, setFieldPassword] = useState("");
+  const [invalidField, setInvalidField] = useState(false);
+  const [isInputAnimate, setInputAnimate] = useState(false);
 
-  const authHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const showErrorPassword = React.useCallback(async () => {
+    setInputAnimate(true);
+    return new Promise((res, _) => {
+      setInvalidField(true);
+      setTimeout(() => {
+        setFieldPassword("");
+      }, 400);
+      res("");
+    }).then(() => {
+      setTimeout(() => {
+        setInvalidField(false);
+        setInputAnimate(false);
+      }, 1000);
+    });
+  }, []);
+
+  const authHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(fieldPasssword);
+    if (isInputAnimate) {
+      return;
+    }
+    if (fieldPasssword.length < 4) {
+      await showErrorPassword();
+      return;
+    }
   };
 
+  const changeFieldPass = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFieldPassword(e.target.value);
+    },
+    []
+  );
+
   return (
-    <form onSubmit={(e) => authHandler(e)} className="auth">
+    <form onSubmit={authHandler} className="auth">
       <input
-        className="auth__field-password"
-        onChange={(e) => setFieldPassword(e.target.value)}
+        className={
+          invalidField ? "auth__field-password error" : "auth__field-password"
+        }
+        onChange={changeFieldPass}
         type="password"
-        placeholder="Введите пароль"
+        placeholder={invalidField ? "Неправильный пароль" : "Введите пароль"}
         value={fieldPasssword}
         autoFocus
       />

@@ -1,5 +1,5 @@
-import { ImageLoaderProps } from "../../Form/Form.types";
-import "./imageloader.scss";
+import { ImageLoaderProps } from "./ImageLoader.types";
+import "./Imageloader.scss";
 
 const ImageLoader = ({ onChange, text = "Загрузить" }: ImageLoaderProps) => {
   return (

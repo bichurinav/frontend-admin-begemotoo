@@ -1,4 +1,4 @@
-@import "../../vars";
+@import "@/vars.scss";
 
 .auth {
   width: 220px;
@@ -22,6 +22,41 @@
       border: solid 2px $theme;
       box-shadow: 0 0 5px $theme;
       outline: none;
+    }
+  }
+  &__field-password.error {
+    animation: shake 0.3s ease;
+    @keyframes shake {
+      0% {
+        border: solid 2px $theme;
+      }
+      30% {
+        border: solid 3px $failed;
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(0px);
+      }
+      70% {
+        transform: translateY(-10px);
+      }
+      80% {
+        transform: translateY(0px);
+      }
+      85% {
+        transform: translateX(-5px);
+      }
+      90% {
+        transform: translateX(0px);
+      }
+      95% {
+        transform: translateX(5px);
+      }
+      100% {
+        transform: translateX(0px);
+      }
     }
   }
 }
